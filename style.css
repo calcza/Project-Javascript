@@ -221,8 +221,8 @@ k {
 
 .dice {
     position: absolute;
-    left: 50%;
     top: 220px;
+    left: 50%;
     transform: translateX(-50%);
     height: 100px;
     box-shadow: 0px 10px 60px rgba(0, 0, 0, 0.10);
@@ -234,9 +234,6 @@ k {
     font-size: 10px;
 }
 
-#dicey {
-
-}
 
 /*-------------------slider------------------------*/
 .slider {
@@ -290,8 +287,8 @@ k {
  popup container - can be anything you want
 https://www.w3schools.com/howto/howto_js_popup.asp */
 .popup {
-    position: absolute;
-    top: 240px;
+    position: relative;
+    top: 200px;
     left: 70%;
     display: inline-block;
     cursor: pointer;
@@ -341,6 +338,63 @@ https://www.w3schools.com/howto/howto_js_popup.asp */
     from {opacity: 0;}
     to {opacity: 1;}
 }
+/*----------------------------------------------------------------*/
+/*-----------------column for more than one dice------------------*/
+/* .row {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    padding: 0 4px;
+} */
+
+/* Create four equal columns that sits next to each other */
+/* .column {
+    -ms-flex: 50%;
+    flex: 50%;
+    max-width: 50%;
+    padding: 0 4px;
+} */
+
+/* .column img {
+    display: inline-block;
+    margin-top: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: auto;
+    vertical-align: center;
+} */
+/* Responsive layout - makes a two column-layout instead of four columns */
+/* @media (max-width: 800px) {
+    .column {
+        -ms-flex: 50%;
+        flex: 50%;
+        max-width: 50%;
+    }
+} */
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+/* @media (max-width: 600px) {
+    .column {
+        -ms-flex: 50%;
+        flex: 50%;
+        max-width: 100%;
+    } */
+
+/*----------------------------------------------------------------*/
+
+/*-----------------column for more than one dice------------------*/
+/* Might have worked but didn't work, had problem with position images */
+/* .itm{
+    width:10%;
+    float: right;
+    margin-right:5%;
+    margin-top: 5%;
+}
+.itm:nth-child(2n+1){
+    clear: left;
+} */
+
 /*----------------------------------------------------------------*/
 
 .winner { background-color: #f7f7f7; }
