@@ -33,7 +33,7 @@ function init() {
     activePlayer = 0;
     gamePlaying = true;
     goalSet = 100;
-    dicevalue = 4; //how many dice
+    dicevalue = 1; //how many dice
     document.getElementById("panel").value = 1;
     diceNo = [] //if more than one dice will be put into array
     a = 1;
@@ -59,7 +59,6 @@ function init() {
     document.querySelector('.player-0-panel').classList.add('active');
 }
 
-
 //==================================
 // document.querySelector('#score-0').textContent = dice;
 // querySelector = to manipulate value and element of our webpage, can be use to read webpage
@@ -71,10 +70,6 @@ function init() {
 // innerHTML = read html txt, em = itallic text
 //==================================
 
-//var x = document.querySelector('#score=0').textContent;
-// this line uses to read and store in variable x
-
-
 document.querySelector('.btn-roll').addEventListener('click', function() {
     if(gamePlaying) {
         if ( dicevalue > 1 ){
@@ -82,6 +77,7 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
         } else {
             document.querySelector('.dice').style.left = "50%";
             document.querySelector('.dice').style.top = "220px";
+            document.querySelector('.dice').style.height = "100px";
             //random number
             dice = Math.floor(Math.random() * 6) + 1;
             // display the result
@@ -204,7 +200,6 @@ function nextPlayer() {
 
     document.querySelector('.dice').style.display = 'none';
     diceDisplay();
-
 }
 
 function diceRolls() {
@@ -221,31 +216,35 @@ function diceRolls() {
         var diceDis = []
         diceDis[i] = document.getElementById(order);
         diceDis[i].style.display = 'block';
-        if ( dicevalue > 1 && i % 2 == 0){
-            document.querySelector('.dice').style.left = "30%";
-            console.log(document.querySelector('.dice').style.left);
-            console.log(document.querySelector('.dice').style.top);
-            console.log("Dice No: " + i);
-            if (i == 2) {
-                document.querySelector('.dice').style.left = "50%";
-                document.querySelector('.dice').style.top = "240px";
-                console.log(document.querySelector('.dice').style.left);
-                console.log(document.querySelector('.dice').style.top);
-                console.log("Dice No: " + i);
+        diceDis[i].style.height = "70px";
+        if ( i == 0 ) { //adjust the dices position
+            if ( i == 0 && dicevalue == 1){
+                diceDis[i].style.height = "100px";
+            } else if (i == 0 && dicevalue == 2){
+                diceDis[i].style.height = "85px";
+                diceDis[i].style.top = "240px";
+                diceDis[i].style.left = "45%";
+            } else if (i == 0 && dicevalue > 2){
+                diceDis[i].style.height = "70px";
+                diceDis[i].style.top = "210px";
+                diceDis[i].style.left = "45%";
             }
-
-        } else if (dicevalue > 1 && i % 2 == 1) {
-            document.querySelector('.dice').style.left = "70%";
-            document.querySelector('.dice').style.top = "220px";
-            console.log(document.querySelector('.dice').style.left);
-            console.log(document.querySelector('.dice').style.top);
-            console.log("Dice No: " + i);
-            if ( i == 3 ){
-                document.querySelector('.dice').style.left = "80%";
-                document.querySelector('.dice').style.top = "240px";
-                console.log(document.querySelector('.dice').style.left);
-                console.log(document.querySelector('.dice').style.top);
-                console.log("Dice No: " + i);
+        } else if ( i == 1 ) {
+            if ( i == 1 && dicevalue == 2) {
+                diceDis[i].style.height = "85px";
+                diceDis[i].style.top = "240px";
+                diceDis[i].style.left = "55%";
+            } else if (i == 1 && dicevalue > 2){
+                diceDis[i].style.height = "70px";
+                diceDis[i].style.top = "210px";
+                diceDis[i].style.left = "55%";
+            }
+        } else if ( i == 2 && dicevalue >= 3){
+            diceDis[i].style.height = "70px";
+            diceDis[i].style.top = "290px";
+            diceDis[i].style.left = "50%";
+            if ( dicevalue == 4) {
+                diceDis[i].style.left = "45%";
             }
         }
         diceDis[i].src = 'dice-' + diceNo[i] + '.png';
@@ -254,7 +253,6 @@ function diceRolls() {
 }
 
 document.querySelector('.btn-new').addEventListener('click', init);
-
 
 function gameOver(){
     document.querySelector('.wrapper').classList.add('gameOver');
@@ -273,34 +271,73 @@ function diceDisplay(){
 }
 
 function checkDice(i){
-    var OneLoop = true; //protecting against multiple loop
     var diceOrder = [] //order of the dice to use with combo, combo2
-    console.log("Combo Even: " + combo2);
-    console.log("Combo Odd: " + combo);
+    if ( i % 2 == 0){
+        combo2 = diceNo[i]; //store even dice
+        console.log("Combo 2: " + combo2);
+    } else if (i % 2 == 1){
+        combo = diceNo[i]; //store odd dice
+        console.log("Combo : " + combo);
+    }
     if (diceNo[i] == 1 || diceNo[i] == 6) {
         if (diceNo[i] == 1) {
             a++;
             z++;
-            console.log("A value: " + a)
         } else if (diceNo[i] === 6) {
             y++;
             z++;
-            console.log("Y value: " + y)
         }
-    // }
-    } else if (i % 2 == 0 && combo2 == diceNo[i] && dicevalue > 2 && i !== 0) {
+    } else if (i % 2 === 0 && combo2 !== diceNo[i] && i !== 0) {
         x++; //check for same value for odd dices e.g. dice 1 and dice 3 is the same value or not
-    } else if (i % 2 == 1 && combo == diceNo[i] && dicevalue > 2 && i !== 1) {
+        console.log("Loop through here 1");
+    } else if (i % 2 == 1 && combo == diceNo[i] && i !== 1) {
         x++; //check for same value for even dices (incase for 4 or more dices)
+        console.log("Loop through here 2");
     } else if (i % 2 == 1 && combo2 == diceNo[i] && dicevalue == 2) {
         x++; //for two dices play
+        console.log("Loop through here 3");
+    } else if (dicevalue == 3 && combo2 == diceNo[0] && combo2 == combo){
+        x++;
+        console.log("Loop through here 4");
     }
+    diceCheck(i);
+    console.log("------END COMBO-------")
+    console.log("Combo : " + combo);
+    console.log("Combo 2: " + combo2);
+    console.log("---------------------")
+    // if ( i % 2 == 0){
+    //     combo2 = diceNo[i]; //store even dice
+    //     console.log(combo2);
+    // } else if (i % 2 == 1){
+    //     combo = diceNo[i]; //store odd dice
+    //     console.log(combo);
+    // }
+}
+
+function diceCheck(i){
+    var OneLoop = true; //protecting against multiple loop
     if (dicevalue % 2 == 0 && OneLoop == true) {
         var b = [3,3,3,2] //Counter against var a,y,z,x
         if (dicevalue > 2) {
             b = [4,4,4,3]
         }
-        if ( a <= b[0] && y <= b[1] && z <= b[2] && x != b[3] && (x + z !== 5)) {
+        if ( a <= b[0] && y <= b[1] && z <= b[2] && x !== b[3] && (x + z !== 5)) {
+            roundScore += diceNo[i];
+            document.querySelector('#current-' + activePlayer).textContent = roundScore;
+        } else {
+            console.log("A value: " + a);
+            console.log("Y value: " + y);
+            console.log("Z value: " + z);
+            console.log("X value: " + x);
+            OneLoop = false; //protecting against multiple loop
+            gameOver();
+        }
+    } else if (dicevalue % 2 == 1 && OneLoop == true) {
+        var b = [3,3,4,2] //Counter against var a,y,z,x
+        if (dicevalue > 2) {
+            b = [4,4,4,2]
+        }
+        if ( a !== b[0] && y !== b[1] && z !== b[2] && x !== b[3] && (x + z !== 5) && (a + y !== 5)) {
             roundScore += diceNo[i];
             document.querySelector('#current-' + activePlayer).textContent = roundScore;
         } else {
@@ -314,10 +351,5 @@ function checkDice(i){
     } else {
         OneLoop = false;
         gameOver();
-    }
-    if ( i % 2 == 0){
-        combo2 = diceNo[i]; //store even dice
-    } else if (i % 2 == 1){
-        combo = diceNo[i]; //store odd dice
     }
 }

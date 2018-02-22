@@ -289,7 +289,7 @@ https://www.w3schools.com/howto/howto_js_popup.asp */
 .popup {
     position: relative;
     top: 200px;
-    left: 70%;
+    left: 68%;
     display: inline-block;
     cursor: pointer;
     -webkit-user-select: none;
@@ -300,7 +300,7 @@ https://www.w3schools.com/howto/howto_js_popup.asp */
 /* the actual popup */
 .popup .popuptext {
     visibility: hidden;
-    width: 200px;
+    width: 300px;
     background-color: #555;
     color: #fff;
     text-align: center;
@@ -309,7 +309,7 @@ https://www.w3schools.com/howto/howto_js_popup.asp */
     position: absolute;
     z-index: 1; /* higher the index will bring forward the object infront */
     bottom: 125%;
-    left: 50%;
+    font-size: 15px;
     margin-left: -80px;
 }
 /* popup arrow */
@@ -340,6 +340,7 @@ https://www.w3schools.com/howto/howto_js_popup.asp */
 }
 /*----------------------------------------------------------------*/
 /*-----------------column for more than one dice------------------*/
+/* Might have worked but didn't work, had problem with position images */
 /* .row {
     display: -ms-flexbox;
     display: flex;
@@ -396,6 +397,11 @@ https://www.w3schools.com/howto/howto_js_popup.asp */
 } */
 
 /*----------------------------------------------------------------*/
+#dicey0 {top: 210px; left: 45%;}
+#dicey1 {top: 210px; left: 55%;}
+#dicey2 {top: 290px; left: 45%;}
+#dicey3 {top: 290px; left: 55%;}
+
 
 .winner { background-color: #f7f7f7; }
 .winner .player-name { font-weight: 300; color: #EB4D4D; }
